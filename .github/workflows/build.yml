@@ -5,6 +5,7 @@ on:
 
 jobs:
   build-android:
+    environment: TEST
     runs-on: ubuntu-latest
 
     steps:
@@ -12,9 +13,15 @@ jobs:
 
       - name: Install flutter
         uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.0.0"
 
       - name: Install dependencies
         run: flutter pub get
+
+      - name: set environment secrets
+        run: |
+          printf "const sKey=\"%s\";\nconst cKey=\"%s\"\n" ${{ secrets.SKEY }} ${{ secrets.CKEY }} > lib/my_env.dart
 
       - name: Build apk release
         run: flutter build apk --release
