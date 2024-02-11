@@ -26,8 +26,11 @@ jobs:
       - name: Build apk release
         run: flutter build apk --release
 
-      - name: Get build artifacts
-        run: ls build/app/outputs/apk/release/
+      - name: Uplioad build artifacts
+        uses: actions/upload-artifact@v4.3.1
+        with:
+          name: call-away.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
 
   build-ios:
     runs-on: macos-latest
