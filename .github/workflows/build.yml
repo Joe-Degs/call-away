@@ -19,7 +19,7 @@ jobs:
 
       - name: set environment secrets
         run: |
-          printf "const sKey=\"%s\";\nconst cKey=\"%s\"\n" ${{ secrets.SKEY }} ${{ secrets.CKEY }} > lib/my_env.dart
+          printf "const sKey=\"%s\";\nconst cKey=\"%s\";\n" ${{ secrets.SKEY }} ${{ secrets.CKEY }} > lib/my_env.dart
 
       - name: Build apk release
         run: flutter build apk --release
